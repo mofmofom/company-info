@@ -16,8 +16,7 @@
         companyInfo5: document.getElementById('companyInfo5').value
       };
 
-      fetch('
-https://script.google.com/macros/s/AKfycbxGe8SZr5yexaBd0rreiypodJGWgkzKeHIkq93_ht9mZGxb0oF_b8b9gTBmnD0MIzgG/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbxGe8SZr5yexaBd0rreiypodJGWgkzKeHIkq93_ht9mZGxb0oF_b8b9gTBmnD0MIzgG/exec', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -26,10 +25,11 @@ https://script.google.com/macros/s/AKfycbxGe8SZr5yexaBd0rreiypodJGWgkzKeHIkq93_h
       })
       .then(response => response.json())
       .then(result => {
-        alert('データが送信されました！');
+        document.getElementById('message').innerText = '送信完了！次にお進みください。';
       })
       .catch(error => {
         console.error('Error:', error);
+        document.getElementById('message').innerText = '送信中にエラーが発生しました。もう一度お試しください。';
       });
     }
   </script>
@@ -62,5 +62,7 @@ https://script.google.com/macros/s/AKfycbxGe8SZr5yexaBd0rreiypodJGWgkzKeHIkq93_h
     
     <button type="submit">送信</button>
   </form>
+  
+  <p id="message"></p>
 </body>
 </html>
