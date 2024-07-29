@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>フォーム</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script>
+    function submitForm() {
+      const data = {
+        name: document.getElementById('name').value,
+        nameFurigana: document.getElementById('nameFurigana').value,
+        phoneNumber: document.getElementById('phoneNumber').value,
+        companyInfo1: document.getElementById('companyInfo1').value,
+        companyInfo2: document.getElementById('companyInfo2').value,
+        companyInfo3: document.getElementById('companyInfo3').value,
+        companyInfo4: document.getElementById('companyInfo4').value,
+        companyInfo5: document.getElementById('companyInfo5').value
+      };
+
+      fetch('
+https://script.google.com/macros/s/AKfycbxBGVPmP6jkPm780c8BKzkojs0p3VgbYz0Puc_j2BT0nQWbMmMu0K6MTKSJ334tuX5z/exec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(result => {
+        alert('データが送信されました！');
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  </script>
+</head>
+<body>
+  <form onsubmit="event.preventDefault(); submitForm();">
+    <label for="name">お名前:</label>
+    <input type="text" id="name" name="name" required><br>
+    
+    <label for="nameFurigana">お名前（ふりがな）:</label>
+    <input type="text" id="nameFurigana" name="nameFurigana" required><br>
+    
+    <label for="phoneNumber">電話番号:</label>
+    <input type="text" id="phoneNumber" name="phoneNumber" required><br>
+    
+    <label for="companyInfo1">会社情報１:</label>
+    <textarea id="companyInfo1" name="companyInfo1" required></textarea><br>
+    
+    <label for="companyInfo2">会社情報２:</label>
+    <textarea id="companyInfo2" name="companyInfo2" required></textarea><br>
+    
+    <label for="companyInfo3">会社情報３:</label>
+    <textarea id="companyInfo3" name="companyInfo3" required></textarea><br>
+    
+    <label for="companyInfo4">会社情報４:</label>
+    <textarea id="companyInfo4" name="companyInfo4" required></textarea><br>
+    
+    <label for="companyInfo5">会社情報５:</label>
+    <textarea id="companyInfo5" name="companyInfo5" required></textarea><br>
+    
+    <button type="submit">送信</button>
+  </form>
+</body>
+</html>
