@@ -4,6 +4,16 @@
   <title>会社情報入力フォーム</title>
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      liff.init({ liffId: "2005918940-R2l0DEod" })
+        .then(() => {
+          // LIFF初期化成功時の処理
+        })
+        .catch((err) => {
+          console.error('LIFF Initialization failed', err);
+        });
+    });
+
     function submitForm() {
       const data = {
         name: document.getElementById('name').value,
