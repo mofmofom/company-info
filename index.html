@@ -26,12 +26,13 @@
         companyInfo5: document.getElementById('companyInfo5').value
       };
 
-      fetch('https://script.google.com/macros/s/AKfycbxbCnp73yOuvJWDBSweJQqaSivQxSKqgIWIyG43_A-WQw7OIIJAk79qSOjB8NJ2VlX2/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbzE5o5kTgRS5KpAlcTkX5Ri1FchK9eOXsY_Qr2OulyHKJx-igvtUn8v4M_luCmA-am-/exec', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
+        mode: 'cors'  // ここを追加
       })
       .then(response => response.json())
       .then(result => {
