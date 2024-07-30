@@ -36,6 +36,9 @@
         companyInfo5: document.getElementById('companyInfo5').value
       };
 
+      const submitButton = document.querySelector('button[type="submit"]');
+      submitButton.innerText = '送信中...';
+
       fetch('https://script.google.com/macros/s/AKfycbxRDOkNQjLf-0I0SZN0tBf4T2-Ord_Vic1PnF_P7AdYek1LVUJaPCaKCxLx51Z2wHRB/exec', {
         method: 'POST',
         body: JSON.stringify(data),
@@ -43,11 +46,13 @@
       })
       .then(response => response.json())
       .then(result => {
-        document.getElementById('message').innerText = '送信完了！次にお進みください。';
+        document.getElementById('message').innerText = '次にお進みください。';
+        submitButton.innerText = '送信完了！';
       })
       .catch(error => {
         console.error('Error:', error);
         document.getElementById('message').innerText = '送信中にエラーが発生しました。もう一度お試しください。';
+        submitButton.innerText = '送信';
       });
     }
   </script>
