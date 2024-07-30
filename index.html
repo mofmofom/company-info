@@ -16,6 +16,14 @@
     });
 
     function submitForm() {
+      const email = document.getElementById('email').value;
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailPattern.test(email)) {
+        alert("正しいメールアドレスを入力してください。");
+        return;
+      }
+
       const data = {
         name: document.getElementById('name').value,
         nameFurigana: document.getElementById('nameFurigana').value,
@@ -28,7 +36,7 @@
         companyInfo5: document.getElementById('companyInfo5').value
       };
 
-      fetch('https://script.google.com/macros/s/AKfycbwH3BSPcCfAcn0-ZTIXNXNVv2MtnGOQu9t2r3tSIJwUTsvIE1dc6_4vXz5IPGq7G1Vm/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbxRDOkNQjLf-0I0SZN0tBf4T2-Ord_Vic1PnF_P7AdYek1LVUJaPCaKCxLx51Z2wHRB/exec', {
         method: 'POST',
         body: JSON.stringify(data),
         mode: 'cors'
@@ -73,7 +81,7 @@
     
     <label for="email" class="required-label">メールアドレス</label>
     <p>有効なメールアドレスをご入力ください</p>
-    <input type="email" id="email" name="email" required placeholder="xxx@example.com"><br>
+    <input type="text" id="email" name="email" required placeholder="xxx@example.com"><br>
     
     <label for="companyInfo1" class="required-label">会社情報１</label>
     <p>応募をご希望の会社名、求人ID、求人タイトル、想定勤務地をご記入ください<br>※会社名はスキップ可</p>
@@ -94,7 +102,7 @@
     <label for="companyInfo5">会社情報５</label>
     <p>応募をご希望の会社名、求人ID、求人タイトル、想定勤務地をご記入ください<br>※会社名はスキップ可</p>
     <textarea id="companyInfo5" name="companyInfo5" placeholder="会社名：&#13;&#10;求人ID：&#13;&#10;求人タイトル：&#13;&#10;想定勤務地："></textarea><br>
-
+    
     </div>
     <button type="submit">送信</button>
   
