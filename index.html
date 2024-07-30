@@ -29,11 +29,8 @@
 
       fetch('https://script.google.com/macros/s/AKfycbxRDOkNQjLf-0I0SZN0tBf4T2-Ord_Vic1PnF_P7AdYek1LVUJaPCaKCxLx51Z2wHRB/exec', {
         method: 'POST',
-        // headers: {
-        //   'Content-Type': 'application/json'
-        // },
         body: JSON.stringify(data),
-        mode: 'cors'  // ここを追加
+        mode: 'cors'
       })
       .then(response => response.json())
       .then(result => {
@@ -44,71 +41,53 @@
         document.getElementById('message').innerText = '送信中にエラーが発生しました。もう一度お試しください。';
       });
     }
-
-    function setPlaceholder(id, placeholder) {
-      const element = document.getElementById(id);
-      element.value = placeholder;
-
-      element.addEventListener('focus', function() {
-        if (this.value === placeholder) {
-          this.value = '';
-        }
-      });
-
-      element.addEventListener('blur', function() {
-        if (this.value === '') {
-          this.value = placeholder;
-        }
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      setPlaceholder('companyInfo1', '会社名：\n求人ID：\n求人タイトル：\n想定勤務地：');
-      setPlaceholder('companyInfo2', '会社名：\n求人ID：\n求人タイトル：\n想定勤務地：');
-      setPlaceholder('companyInfo3', '会社名：\n求人ID：\n求人タイトル：\n想定勤務地：');
-      setPlaceholder('companyInfo4', '会社名：\n求人ID：\n求人タイトル：\n想定勤務地：');
-      setPlaceholder('companyInfo5', '会社名：\n求人ID：\n求人タイトル：\n想定勤務地：');
-    });
   </script>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    ::placeholder {
+      font-family: 'Arial', sans-serif;
+      font-size: 14px;
+      color: #999;
+    }
+  </style>
 </head>
 <body>
   <form onsubmit="event.preventDefault(); submitForm();">
     <label for="name">お名前：</label>
-    <p>フルネームでご記入ください。</p>
-    <input type="text" id="name" name="name" required><br>
+    <p>フルネームでご記入ください</p>
+    <input type="text" id="name" name="name" required placeholder="山田太郎"><br>
     
     <label for="nameFurigana">お名前（ふりがな）：</label>
-    <p>ひらがな・フルネームでご記入ください。</p>
-    <input type="text" id="nameFurigana" name="nameFurigana" required><br>
+    <p>ひらがな・フルネームでご記入ください</p>
+    <input type="text" id="nameFurigana" name="nameFurigana" required placeholder="やまだたろう"><br>
     
     <label for="phoneNumber">電話番号：</label>
-    <p>ハイフン無しでご入力ください。例）0901234567</p>
-    <input type="text" id="phoneNumber" name="phoneNumber" required><br>
+    <p>ハイフン無しでご入力ください</p>
+    <input type="text" id="phoneNumber" name="phoneNumber" required placeholder="0901234567"><br>
     
     <label for="email">メールアドレス：</label>
-    <p>有効なメールアドレスをご入力ください。</p>
-    <input type="email" id="email" name="email" required><br>
+    <p>有効なメールアドレスをご入力ください</p>
+    <input type="email" id="email" name="email" required placeholder="xxx@example.com"><br>
     
     <label for="companyInfo1">会社情報１：</label>
-    <p>応募をご希望の会社名、求人ID、求人タイトル、想定勤務地をご記入ください。</p>
-    <textarea id="companyInfo1" name="companyInfo1" required></textarea><br>
+    <p>応募をご希望の会社名、求人ID、求人タイトル、想定勤務地をご記入ください</p>
+    <textarea id="companyInfo1" name="companyInfo1" required placeholder="会社名：&#13;&#10;求人ID：&#13;&#10;求人タイトル：&#13;&#10;想定勤務地："></textarea><br>
     
     <label for="companyInfo2">会社情報２：</label>
-    <p>応募をご希望の会社名、求人ID、求人タイトル、想定勤務地をご記入ください。</p>
-    <textarea id="companyInfo2" name="companyInfo2" required></textarea><br>
+    <p>応募をご希望の会社名、求人ID、求人タイトル、想定勤務地をご記入ください</p>
+    <textarea id="companyInfo2" name="companyInfo2" required placeholder="会社名：&#13;&#10;求人ID：&#13;&#10;求人タイトル：&#13;&#10;想定勤務地："></textarea><br>
     
     <label for="companyInfo3">会社情報３：</label>
-    <p>応募をご希望の会社名、求人ID、求人タイトル、想定勤務地をご記入ください。</p>
-    <textarea id="companyInfo3" name="companyInfo3" required></textarea><br>
+    <p>応募をご希望の会社名、求人ID、求人タイトル、想定勤務地をご記入ください</p>
+    <textarea id="companyInfo3" name="companyInfo3" required placeholder="会社名：&#13;&#10;求人ID：&#13;&#10;求人タイトル：&#13;&#10;想定勤務地："></textarea><br>
     
     <label for="companyInfo4">会社情報４：</label>
-    <p>応募をご希望の会社名、求人ID、求人タイトル、想定勤務地をご記入ください。</p>
-    <textarea id="companyInfo4" name="companyInfo4" required></textarea><br>
+    <p>応募をご希望の会社名、求人ID、求人タイトル、想定勤務地をご記入ください</p>
+    <textarea id="companyInfo4" name="companyInfo4" required placeholder="会社名：&#13;&#10;求人ID：&#13;&#10;求人タイトル：&#13;&#10;想定勤務地："></textarea><br>
     
     <label for="companyInfo5">会社情報５：</label>
-    <p>応募をご希望の会社名、求人ID、求人タイトル、想定勤務地をご記入ください。</p>
-    <textarea id="companyInfo5" name="companyInfo5" required></textarea><br>
+    <p>応募をご希望の会社名、求人ID、求人タイトル、想定勤務地をご記入ください</p>
+    <textarea id="companyInfo5" name="companyInfo5" required placeholder="会社名：&#13;&#10;求人ID：&#13;&#10;求人タイトル：&#13;&#10;想定勤務地："></textarea><br>
     
     <button type="submit">送信</button>
   </form>
