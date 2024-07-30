@@ -58,6 +58,7 @@
 </head>
 <body>
   <form onsubmit="event.preventDefault(); submitForm();">
+    <div class="container">
     <label for="name" class="required-label">お名前</label>
     <p>フルネームでご記入ください</p>
     <input type="text" id="name" name="name" required placeholder="山田太郎"><br>
@@ -95,6 +96,7 @@
     <textarea id="companyInfo5" name="companyInfo5" placeholder="会社名：&#13;&#10;求人ID：&#13;&#10;求人タイトル：&#13;&#10;想定勤務地："></textarea><br>
     
     <button type="submit">送信</button>
+  </div>
   </form>
   
   <p id="message"></p>
