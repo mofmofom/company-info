@@ -38,6 +38,7 @@
 
       const submitButton = document.querySelector('button[type="submit"]');
       submitButton.innerText = '送信中...';
+      submitButton.disabled = true; // 送信ボタンを無効化
 
       fetch('https://script.google.com/macros/s/AKfycbwH3BSPcCfAcn0-ZTIXNXNVv2MtnGOQu9t2r3tSIJwUTsvIE1dc6_4vXz5IPGq7G1Vm/exec', {
         method: 'POST',
@@ -48,25 +49,27 @@
       .then(result => {
         document.getElementById('message').innerText = '次にお進みください。';
         submitButton.innerText = '送信完了！';
+        submitButton.disabled = true; // 送信ボタンを再度無効化
       })
       .catch(error => {
         console.error('Error:', error);
         document.getElementById('message').innerText = '送信中にエラーが発生しました。もう一度お試しください。';
         submitButton.innerText = '送信';
+        submitButton.disabled = false; // エラー時に送信ボタンを再度有効化
       });
     }
-  </script>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    ::placeholder {
-      font-family: 'Arial', sans-serif;
-      font-size: 14px;
-      color: #999;
-    }
-    .required-label::after {
-      content: " *";
-      color: red;
-    }
+      </script>
+      <link rel="stylesheet" href="styles.css">
+      <style>
+        ::placeholder {
+          font-family: 'Arial', sans-serif;
+          font-size: 14px;
+          color: #999;
+        }
+        .required-label::after {
+          content: " *";
+          color: red;
+        }
   </style>
 </head>
 <body>
