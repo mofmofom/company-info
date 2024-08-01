@@ -5,10 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
+    let userId = "";
+
     document.addEventListener('DOMContentLoaded', function() {
       liff.init({ liffId: "2005918940-R2l0DEod" })
         .then(() => {
           // LIFF初期化成功時の処理
+          if (liff.isLoggedIn()) {
+            liff.getProfile()
+              .then(profile => {
+                userId = profile.userId;
+              })
+              .catch(err => {
+                console.error('Error getting profile', err);
+              });
+          } else {
+            liff.login();
+          }
         })
         .catch((err) => {
           console.error('LIFF Initialization failed', err);
@@ -40,14 +53,16 @@
         companyInfo2: document.getElementById('companyInfo2').value,
         companyInfo3: document.getElementById('companyInfo3').value,
         companyInfo4: document.getElementById('companyInfo4').value,
-        companyInfo5: document.getElementById('companyInfo5').value
+        companyInfo5: document.getElementById('companyInfo5').value,
+        timestamp: new Date().toISOString(),
+        userId: userId
       };
 
       const submitButton = document.querySelector('button[type="submit"]');
       submitButton.innerText = '送信中...';
       submitButton.disabled = true; // 送信ボタンを無効化
 
-      fetch('https://script.google.com/macros/s/AKfycbwH3BSPcCfAcn0-ZTIXNXNVv2MtnGOQu9t2r3tSIJwUTsvIE1dc6_4vXz5IPGq7G1Vm/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbyYMI-upwMrlX72c6LaU1g02lkG8tosUDtMClvnjmHlM_ztU6qSyEqOQ6l_MvNe14n4/exec', {
         method: 'POST',
         body: JSON.stringify(data),
         mode: 'cors'
