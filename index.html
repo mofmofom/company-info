@@ -8,6 +8,15 @@
     let userId = "";
     let username = "";
 
+    function formatDate(date) {
+      const year = date.getFullYear().toString().slice(-2); // 年の下2桁を取得
+      const month = ('0' + (date.getMonth() + 1)).slice(-2); // 月を2桁に
+      const day = ('0' + date.getDate()).slice(-2); // 日を2桁に
+      const hours = ('0' + date.getHours()).slice(-2); // 時間を2桁に
+      const minutes = ('0' + date.getMinutes()).slice(-2); // 分を2桁に
+      return `${day}/${month}/${year} ${hours}:${minutes}`;
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
       liff.init({ liffId: "2005918940-R2l0DEod" })
         .then(() => {
@@ -58,7 +67,7 @@
         companyInfo3: document.getElementById('companyInfo3').value,
         companyInfo4: document.getElementById('companyInfo4').value,
         companyInfo5: document.getElementById('companyInfo5').value,
-        timestamp: new Date().toISOString(),
+        timestamp: formatDate(new Date()),
         userId: document.getElementById('userId').value,
         username: document.getElementById('username').value
       };
