@@ -6,6 +6,7 @@
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
     let userId = "";
+    let username = "";
 
     document.addEventListener('DOMContentLoaded', function() {
       liff.init({ liffId: "2005918940-R2l0DEod" })
@@ -14,7 +15,10 @@
           if (liff.isLoggedIn()) {
             liff.getProfile()
               .then(profile => {
+                username = profile.displayName;
                 userId = profile.userId;
+                document.getElementById('userId').value = userId; // userIdを隠しフィールドに設定
+                document.getElementById('username').value = username; // usernameを隠しフィールドに設定
               })
               .catch(err => {
                 console.error('Error getting profile', err);
@@ -55,7 +59,8 @@
         companyInfo4: document.getElementById('companyInfo4').value,
         companyInfo5: document.getElementById('companyInfo5').value,
         timestamp: new Date().toISOString(),
-        userId: userId
+        userId: document.getElementById('userId').value,
+        username: document.getElementById('username').value
       };
 
       const submitButton = document.querySelector('button[type="submit"]');
@@ -138,6 +143,9 @@
       <label for="companyInfo5">会社情報５</label>
       <p>応募をご希望の会社名、求人ID、求人タイトル、想定勤務地をご記入ください<br>※会社名はスキップ可</p>
       <textarea id="companyInfo5" name="companyInfo5" placeholder="会社名：&#13;&#10;求人ID：&#13;&#10;求人タイトル：&#13;&#10;想定勤務地："></textarea><br>
+      
+      <input type="hidden" id="userId" name="userId"> <!-- 隠しフィールド -->
+      <input type="hidden" id="username" name="username"> <!-- 隠しフィールド -->
     </div>
     <button type="submit">送信</button>
   </form>
