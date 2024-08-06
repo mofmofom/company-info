@@ -78,7 +78,9 @@
 
       fetch('https://script.google.com/macros/s/AKfycbw0tkBM7DYBIW-2QFwKl1M7BUgGWGnlrgr59V4S-bCWmM8LlBrWGRuyxXs8jOWIDFJf/exec', {
         method: 'POST',
-        "Content-Type" : "application/x-www-form-urlencoded",
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
         body: new URLSearchParams(data),
         mode: 'no-cors'
       })
